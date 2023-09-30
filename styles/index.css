@@ -1,0 +1,82 @@
+body {
+  font: 1.25em Montserrat, sans-serif;
+  line-height: 1.5em;
+  color: #f5f6f7;
+}
+p { 
+  font-size: 1.2em;
+  margin: 0em;
+}
+.margin { margin-bottom: 2.8em; }
+.container-fluid {
+  padding-top: 4.375em;
+  padding-bottom: 4.375em;
+}
+.navbar {
+  padding-top: 0.7em;
+  padding-bottom: 0.7em;
+  border: 0;
+  border-radius: 0;
+  margin-bottom: 0;
+  font-size: 0.75em;
+  letter-spacing: 0.3em;
+}
+.navbar-nav li a:hover { color: #1abc9c !important; }
+.navbar-brand span.title-ch, .navbar-nav span.title-ch { font-size: 1em; }
+.navbar-brand span.title-en, .navbar-nav span.title-en { font-size: 0.5em; }
+.img-svg-icon { width: 1.5em; }
+
+.bg-cat { 
+  background-color: #220057;
+  color: #fff;
+}
+.bg-cat .panel-cat .panel-heading {
+  background-color: #ebe0ff;
+  color: #6e46b4;
+  border-color: #bb9fec;
+}
+.bg-cat .panel-cat .panel-body {
+  color: #333;
+}
+
+.bg-dog { 
+  background-color: #fff;
+  color: #777;
+}
+.bg-dog .panel-dog  {
+  border-color: #220057;
+}
+.bg-dog .panel-dog .panel-heading {
+  background-color: #ebe0ff;
+  color: #6e46b4;
+  border-color: #220057;
+}
+
+.btn-series {
+    color: #fff;
+    background-color: #5b49e9;
+}
+.btn-series:hover, .btn-series:focus {
+    color: #fff;
+    background-color: #4a38d8;
+}
+
+#topButton {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #ebe0ff;
+  color: #0626a8;
+  border-radius: 5px;
+  text-decoration: none;
+}
+#topButton:hover {
+  background-color: #bb9fec;
+}
+
+.jq_question_list {
+  font-size: 1em;
+  line-height: 2.4em;
+}
