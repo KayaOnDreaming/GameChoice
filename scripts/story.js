@@ -34,20 +34,45 @@ $(document).ready(function(){
 
     // answer_list
     if(data.answer_list && data.answer_list.length > 0) {
-      var answers = $.grep(data.answer_list, function(gitem) {
-        return gitem.question_id == qelem.question_id;
+      var answers = $.grep(data.answer_list, function(gelem) {
+        return gelem.question_id == qelem.question_id;
       });
 
       if(answers.length > 0){
-        var vote_count_array = $.map(answers, function(aitem) {
-          return aitem.vote_count;
-        });
-        var max_vote_count = Math.max(...vote_count_array);
+        var vote_array = [];
+        var temp_array = answers;
+        var tempFindChoice = qelem.multiple_choice;
+        while(true) {
+          var max = 0, max_elem;
+          $.each(temp_array, function (idx, elem) {
+            if(elem.vote_count > max) {
+              max = elem.vote_count;
+              max_elem = elem;
+            }
+          });
+          vote_array.push(max_elem);
+          tempFindChoice--;
+          if(tempFindChoice > 0) {
+            var temp_array_2 = [];
+            $.each(temp_array, function (idx, elem) {
+              if(elem.answer_id != max_elem.answer_id) {
+                temp_array_2.push(elem);
+              }
+            });
+            temp_array = temp_array_2;
+          } else {
+            break;
+          }
+        }
+        console.log(vote_array);
 
         var html = '【選項】<br/><ul>';
         $.each(answers, function(aidx, aelem) {
           if(aelem.question_id === qelem.question_id) {
-            html += (aelem.vote_count == max_vote_count ? '<li class="text-primary">' : '<li>');
+            var flag = $.map(vote_array, function(elem){
+              if(elem.answer_id == aelem.answer_id) return elem;
+            });
+            html += (flag.length > 0 ? '<li class="text-primary">' : '<li>');
             html += aelem.option_content + '［旅人投票數：' + aelem.vote_count + '］</li>';
           }
         });
@@ -60,7 +85,7 @@ $(document).ready(function(){
     if(qelem.notes && qelem.notes.length > 0) {
       var html = '【問題備註】<br/><ul>';
       $.each(qelem.notes, function(nidx, nelem) {
-        html += '<li>' + nelem + '</li>';
+        html += '<li>' + nelem.change2html() + '</li>';
       });
       html += '</ul>';
       jqQElem.find('.jq_notes').html(html);
